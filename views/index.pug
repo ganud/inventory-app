@@ -2,4 +2,11 @@ extends layout
 
 block content
   h1= title
-  p Welcome to #{title}
+  p Welcome to the Inventory App
+
+  h2="The inventory currently has:"
+
+  ul
+    li #[strong Items:] !{item_count}
+    li #[strong Categories:] !{category_count}
+    li #[strong Total Items in stock:] !{stock_count}

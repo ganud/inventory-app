@@ -1,8 +1,29 @@
 const Item = require("../models/item");
+const Category = require("../models/category");
 const asyncHandler = require("express-async-handler");
 
 exports.index = asyncHandler(async (req, res, next) => {
-  res.send("NOT IMPLEMENTED: Site Home Page");
+  // Get quantity data to display on homepage
+  const [numItems, numCategories, numItemsinStock] = await Promise.all([
+    Category.countDocuments({}).exec(),
+    Item.countDocuments({}).exec(),
+    // Sum the total stock
+    Item.aggregate([
+      {
+        $group: {
+          _id: null,
+          totalQty: { $sum: "$stock" },
+        },
+      },
+    ]).exec(),
+  ]);
+  console.log(numItemsinStock);
+  res.render("index", {
+    title: "Inventory App Home",
+    item_count: numItems,
+    category_count: numCategories,
+    stock_count: numItemsinStock[0].totalQty, // Extract total quantity from aggregate output
+  });
 });
 
 // Display list of all items.
