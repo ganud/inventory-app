@@ -10,5 +10,9 @@ const ItemSchema = new Schema({
   stock: { type: Number, min: 0 },
 });
 
+// Compute url property from id
+ItemSchema.virtual("url").get(function () {
+  return `/inventory/item/${this._id}`;
+});
 // Export model
 module.exports = mongoose.model("Item", ItemSchema);

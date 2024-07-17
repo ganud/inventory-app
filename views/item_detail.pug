@@ -1,0 +1,15 @@
+extends layout
+
+block content
+  h1= item.name
+  ul
+    li
+        p=`Description: ${item.description}`
+        p=`Stock: ${item.stock}`
+        p=`Category: ${item.category}`
+        p=`Price: $${item.price}`
+  hr
+  p
+    a(href=item.url+'/delete') Delete Item
+  p
+    a(href=item.url+'/update') Update Item

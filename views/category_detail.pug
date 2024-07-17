@@ -1,0 +1,25 @@
+extends layout
+
+block content
+  h1= title
+  
+  h2=`Here are all the current items available in ${category.name}:`
+
+  if item_list.length
+    ul
+      each item in item_list
+        li
+          a(href=item.url) #{item.name}
+          p=`Description: ${item.description}`
+          p=`Stock: ${item.stock}`
+          p=`Category: ${item.category}`
+          p=`Price: $${item.price}`
+        hr
+  else
+    p There are no items.
+    hr
+
+  p
+    a(href=category.url+'/delete') Delete Category
+  p
+    a(href=category.url+'/update') Update Category

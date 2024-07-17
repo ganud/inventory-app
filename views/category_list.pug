@@ -1,0 +1,15 @@
+extends layout
+
+block content
+  
+  h2="Here are all the current categories available:"
+
+  if category_list.length
+    ul
+      each category in category_list
+        li
+          a(href=category.url) #{category.name}
+          p=`Description: ${category.description}`
+        hr
+
+  else

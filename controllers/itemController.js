@@ -28,12 +28,21 @@ exports.index = asyncHandler(async (req, res, next) => {
 
 // Display list of all items.
 exports.item_list = asyncHandler(async (req, res, next) => {
-  res.send("NOT IMPLEMENTED: item list");
+  const allItems = await Item.find().sort({ name: 1 }).exec();
+
+  res.render("item_list", {
+    title: "Item list",
+    item_list: allItems,
+  });
 });
 
 // Display detail page for a specific item.
 exports.item_detail = asyncHandler(async (req, res, next) => {
-  res.send(`NOT IMPLEMENTED: item detail: ${req.params.id}`);
+  const item = await Item.findById(req.params.id).exec();
+  res.render("item_detail", {
+    title: "Item detail",
+    item: item,
+  });
 });
 
 // Display item create form on GET.
