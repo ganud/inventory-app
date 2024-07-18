@@ -22,3 +22,22 @@ ul {
   list-style-type: none;
   padding: 0px;
 }
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+}
+
+.form-control {
+  padding: 10px;
+  max-width: 60%;
+  margin-bottom: 10px;
+}
+
+.form-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
