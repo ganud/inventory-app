@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const Category = require("../models/category");
 
 const Schema = mongoose.Schema;
 
@@ -14,5 +15,6 @@ const ItemSchema = new Schema({
 ItemSchema.virtual("url").get(function () {
   return `/inventory/item/${this._id}`;
 });
+
 // Export model
 module.exports = mongoose.model("Item", ItemSchema);

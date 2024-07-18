@@ -10,7 +10,7 @@ block content
           a(href=item.url) #{item.name}
           p=`Description: ${item.description}`
           p=`Stock: ${item.stock}`
-          p=`Category: ${item.category}`
+          p=`Category: ${item.category.name}`
           p=`Price: $${item.price}`
         hr
 
